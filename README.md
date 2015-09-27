@@ -1,2 +1,3 @@
-# Dreambound
-Various utility classes used in our projects
+# Dreambound Framework
+
+This repository contains various utility classes used in our projects.
