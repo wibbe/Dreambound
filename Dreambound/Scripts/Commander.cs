@@ -327,7 +327,7 @@ namespace Dreambound
 			for (int i = 1; i < args.Length; i++)
 				sb.Append(args[i]).Append(" ");
 
-			//Debug.Log(sb.ToString());
+			Log.Info(sb.ToString());
 			return "";
 		}
 	}
