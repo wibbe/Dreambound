@@ -200,6 +200,7 @@ namespace Dreambound.Telnet
 
 				if (data.Length > 0)
 				{
+					sleepTime = 0;
 					SendRaw(data);
 				}
 				else
