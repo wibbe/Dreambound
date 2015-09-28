@@ -4,6 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 #if UNITY_STANDALONE || UNITY_IOS || UNITY_ANDROID
 using UnityEngine;
+#define HAS_UNITY
 #endif
 
 namespace Dreambound.IO
@@ -72,7 +73,7 @@ namespace Dreambound.IO
 
 		private static string GetSavePath(string name)
 		{
-			#if UNITY_STANDALONE || UNITY_IOS || UNITY_ANDRIOD
+			#if HAS_UNITY
 			return Path.Combine(Application.persistentDataPath, name + ".data");
 			#else
 			return name + ".data";
