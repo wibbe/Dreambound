@@ -24,19 +24,19 @@ namespace ServerTest
 
 		private void ClientConnected(TelnetNVT client)
 		{
-			Console.WriteLine("Client {0} connected", client.Id);
+			Log.Debug("Client ", client.Id, " connected");
 			client.WriteLine("Welcome to the Telnet server!");
 			client.Write("> ");
 		}
 
 		private void ClientDisconnected(TelnetNVT client)
 		{
-			Console.WriteLine("Client {0} disconnected", client.Id);
+			Log.Debug("Client ", client.Id, " disconnected");
 		}
 
 		private void DataReceived(TelnetNVT client, string text)
 		{
-			Console.WriteLine("Client {0} got '{1}'", client.Id, text);
+			Log.Debug("Client ", client.Id, " got '", text, "'");
 			client.Write("> ");
 		}
 

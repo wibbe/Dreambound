@@ -63,7 +63,7 @@ namespace Dreambound.Telnet
 			m_server.Start();
 			m_clientId = 1;
 
-			Console.WriteLine("Telnet server running on address {0}", m_bindAddress.ToString());
+			Log.Info("Telnet server running on address ", m_bindAddress.ToString());
 		}
 
 		public void Stop()
@@ -96,7 +96,7 @@ namespace Dreambound.Telnet
 			{
 				TcpClient client = m_server.AcceptTcpClient();
 
-				Console.WriteLine("Client connected from {0}", client.Client.RemoteEndPoint.ToString());
+				Log.Info("Client connected from ", client.Client.RemoteEndPoint.ToString());
 
 				TelnetNVT telnetClient = new TelnetNVT(this, client, m_clientId++);
 				telnetClient.Start();
