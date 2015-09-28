@@ -37,10 +37,17 @@
     <Compile Include="Scripts\Telnet\TelnetNVT.cs" />
     <Compile Include="Scripts\Telnet\RFC.cs" />
     <Compile Include="Scripts\RemoteDebugger.cs" />
+    <Compile Include="Scripts\IO\Data.cs" />
+    <Compile Include="Scripts\IO\DataSystem.cs" />
+    <Compile Include="Scripts\Log.cs" />
+    <Compile Include="Scripts\Base64.cs" />
+    <Compile Include="Scripts\Easing.cs" />
+    <Compile Include="Scripts\IO\Json.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\Telnet\" />
+    <Folder Include="Scripts\IO\" />
   </ItemGroup>
 </Project>
