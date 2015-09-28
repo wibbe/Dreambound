@@ -76,7 +76,7 @@ namespace Dreambound.IO
 			#if HAS_UNITY
 			return Path.Combine(Application.persistentDataPath, name + ".data");
 			#else
-			return name + ".data";
+			return Path.Combine(Directory.GetCurrentDirectory(), name + ".data");
 			#endif
 		}
 	}
