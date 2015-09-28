@@ -23,6 +23,7 @@
  */
 
 using System;
+using System.IO;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
@@ -116,7 +117,7 @@ namespace Dreambound.Telnet
 
 		private void InThreadMain()
 		{
-			List<byte> inputStream = new List<byte>();
+			MemoryStream inputStream = new MemoryStream(1024);
 
 			while (m_client.Connected)
 			{
@@ -135,7 +136,7 @@ namespace Dreambound.Telnet
 						switch (verb)
 						{
 							case (int)RFC854.IAC:
-								inputStream.Add((byte)verb);
+								inputStream.WriteByte((byte)verb);
 								break;
 
 							case (int)RFC854.DO:
@@ -162,11 +163,9 @@ namespace Dreambound.Telnet
 					case (int)'\n':
 						lock (m_inLock)
 						{
-							byte[] data = new byte[inputStream.Count];
-							for (int i = 0; i < inputStream.Count; i++)
-								data[i] = inputStream[i];
-
-							inputStream.Clear();
+							var data = inputStream.ToArray();
+							inputStream.Position = 0;
+							inputStream.SetLength(0);
 
 							char[] encodedData = Encoding.UTF8.GetChars(data);
 							m_inStream.Enqueue(new string(encodedData));
@@ -175,7 +174,7 @@ namespace Dreambound.Telnet
 						break;
 
 					default:
-						inputStream.Add((byte)input);
+						inputStream.WriteByte((byte)input);
 						break;
 				}
 			}
