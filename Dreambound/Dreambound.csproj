@@ -43,6 +43,7 @@
     <Compile Include="Scripts\Base64.cs" />
     <Compile Include="Scripts\Easing.cs" />
     <Compile Include="Scripts\IO\Json.cs" />
+    <Compile Include="Scripts\Md5.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
