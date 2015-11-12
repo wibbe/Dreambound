@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 
-
 using System;
 
 namespace Dreambound

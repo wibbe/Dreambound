@@ -1,18 +1,18 @@
 ﻿/**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2015 Dreambound Studios AB
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,6 +30,7 @@ using System.Text;
 
 namespace Dreambound
 {
+	[AttributeUsage(AttributeTargets.Method)]
 	public class CmdAttribute : System.Attribute
 	{
 		public string Name { get; set; }
@@ -42,6 +43,7 @@ namespace Dreambound
 		}
 	}
 
+	[AttributeUsage(AttributeTargets.Field)]
 	public class VarAttribute : System.Attribute
 	{
 		public string Name { get; set; }
@@ -160,18 +162,15 @@ namespace Dreambound
 
 	public class Commander
 	{
-		private Dictionary<string, Command> m_commands;
-		private Dictionary<string, Variable> m_variables;
+		private Dictionary<string, Command> m_commands = new Dictionary<string, Command>();
+		private Dictionary<string, Variable> m_variables = new Dictionary<string, Variable>();
 
 		public Dictionary<string, Command> Commands { get { return m_commands; } }
 		public Dictionary<string, Variable> Variables { get { return m_variables; } }
-	
+
 
 		public Commander()
 		{
-			m_commands = new Dictionary<string, Command>();
-			m_variables = new Dictionary<string, Variable>();
-
 			InspectAssembly();
 			RegisterObject(this);
 		}
@@ -238,7 +237,7 @@ namespace Dreambound
 			CollectMethods(type, target);
 			CollectVariables(type, target);
 		}
-			
+
 		private void InspectAssembly()
 		{
 			var assembly = Assembly.GetExecutingAssembly();
@@ -289,7 +288,7 @@ namespace Dreambound
 								m_variables.Add("$" + variable.Name, new FloatVariable(field, target));
 							else if (fieldType == typeof(bool))
 								m_variables.Add("$" + variable.Name, new BoolVariable(field, target));
-						}							
+						}
 					}
 				}
 			}
