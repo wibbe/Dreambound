@@ -27,7 +27,6 @@ using System.Text;
 
 #if UNITY_STANDALONE || UNITY_IOS || UNITY_ANDROID
 using UnityEngine;
-#define HAS_UNITY
 #endif
 
 namespace Dreambound
@@ -49,7 +48,7 @@ namespace Dreambound
 
 			string s = sb.ToString();
 
-			#if HAS_UNITY
+			#if UNITY_STANDALONE || UNITY_IOS || UNITY_ANDROID
 			UnityEngine.Debug.Log(s);
 			#else
 			Console.WriteLine(s);
@@ -73,7 +72,7 @@ namespace Dreambound
 
 			string s = sb.ToString();
 
-			#if HAS_UNITY
+			#if UNITY_STANDALONE || UNITY_IOS || UNITY_ANDROID
 			UnityEngine.Debug.Log(s);
 			#else
 			Console.WriteLine(s);
@@ -97,7 +96,7 @@ namespace Dreambound
 
 			string s = sb.ToString();
 
-			#if HAS_UNITY
+			#if UNITY_STANDALONE || UNITY_IOS || UNITY_ANDROID
 			UnityEngine.Debug.LogWarning(s);
 			#else
 			Console.WriteLine(s);
@@ -121,7 +120,7 @@ namespace Dreambound
 
 			string s = sb.ToString();
 
-			#if HAS_UNITY
+			#if UNITY_STANDALONE || UNITY_IOS || UNITY_ANDROID
 			UnityEngine.Debug.LogError(s);
 			#else
 			Console.WriteLine(s);

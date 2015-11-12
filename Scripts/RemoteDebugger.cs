@@ -23,15 +23,51 @@
  */
 
 using System;
+using Dreambound.Telnet;
+
+#if UNITY_STANDALONE || UNITY_IOS || UNITY_ANDROID
+using UnityEngine;
+#endif
 
 namespace Dreambound
 {
-	/**
-	 * The RemoveDebugger class implements a number of Unity GameObject/MonoBehaviour debug functions.
-	 */
-	public class RemoteDebugger
+	public class RemoteDebugger : MonoBehaviour
 	{
-		public RemoteDebugger()
+		private TelnetServer m_server = null;
+
+		private void Awake()
+		{
+			m_server = new TelnetServer();
+			m_server.OnClientConnected += ClientConnected;
+			m_server.OnClientDisconnected += ClientDisconnected;
+			m_server.OnDataReceived += DataReceived;
+		}
+
+		private void OnEnable()
+		{
+			m_server.Start();
+		}
+
+		private void OnDisable()
+		{
+			m_server.Stop();
+		}
+
+		private void Update()
+		{
+			m_server.Update();
+		}
+
+		private void ClientConnected(TelnetNVT client)
+		{
+			Log.Debug("Client ", client.Id, " connected");
+		}
+
+		private void ClientDisconnected(TelnetNVT client)
+		{
+		}
+
+		private void DataReceived(TelnetNVT client, string data)
 		{
 		}
 	}
